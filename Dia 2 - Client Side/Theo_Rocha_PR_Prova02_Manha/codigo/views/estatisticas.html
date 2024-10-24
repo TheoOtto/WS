@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+</head>
+<body>
+    <div class="cont">
+        <nav class="nav">
+            <a href="../views/home.html" class="btn btn-info btn-sm shadow-lg">Voltar</a>
+            <h6>Estatísticas</h6>
+            <div style="width: 13%;"></div>
+        </nav>
+        <div class="linha">
+            <img src="../img/estas.png" alt="sussa" width="90px" class="mt-4" id="imagem" onmouseover="mudaimg('../img/corte.png')" onmouseout="mudaimg('../img/estas.png')">
+
+            <h4 style="width: 35%; font-weight: bold !important;" class="mt-2">Estatísticas</h4>
+        </div>
+        <div class="linha">
+            <div class="dados">
+                <p>Meditações Realizadas</p>
+                <div class="medita btn btn-info shadow" id="contador" onclick="contador()">Ver Quantidade</div>
+            </div>
+        </div>
+        <div class="linha">
+            <div class="dados">
+                <p>Tempo total meditando</p>
+                <div class="medita btn btn-info shadow" id="tempo" onclick="tempo()"> Ver Segundos</div>
+            </div>
+        </div>
+        <div class="linha">
+            <div class="dados">
+                <p>Objetivo mais utilizado</p>
+                <div class="medita btn btn-info shadow" id="maismedita" onclick="mais()">Ver Objetivo</div>
+            </div>
+        </div>
+        <span id="span"></span>
+        <footer></footer>
+    </div>
+    <script>
+        window.onload = ()=>{
+
+            localStorage.setItem('contador',0)
+
+            let segundos = localStorage.getItem('segundos')
+
+
+            
+            if(segundos >= 60 && segundos < 120){
+
+                let contador = Number(localStorage.getItem('contador'))
+                let contadoratt = contador + 1
+
+                let mostra = document.getElementById('contador')
+                mostra.innerHTML = ` ${contadoratt}`
+
+            }else if(segundos >= 120 && segundos < 180){
+
+                let contador = Number(localStorage.getItem('contador'))
+                let contadoratt = contador + 2
+
+                let mostra = document.getElementById('contador')
+                mostra.innerHTML = ` ${contadoratt}`
+
+            }else{
+                let contador = Number(localStorage.getItem('contador'))
+                let contadoratt = contador + 1
+                contadoratt --
+                let mostra = document.getElementById('contador')
+                mostra.innerHTML = `${contadoratt}`
+            }
+
+            let sussa = localStorage.getItem('sussa')
+            let foco = localStorage.getItem('foco')
+            let dormir = localStorage.getItem('dormir')
+
+            let maismedita = document.getElementById('maismedita')
+
+            if(sussa > foco && sussa > dormir){
+                maismedita.innerHTML = `Ficar Sussa`
+            }
+            else if (foco > sussa && foco > dormir){
+                maismedita.innerHTML = `Focar na tarefa`
+            }
+            else if (dormir > sussa && dormir > foco){
+                maismedita.innerHTML = `Dormir de boas`
+            }else{
+                maismedita.innerHTML = 'Sem objetivo mais utilizado'
+            }
+
+            let tempo = document.getElementById('tempo')
+
+            segs = segundos%60
+            
+            if(segundos >= 60 && segundos < 120){
+                segs = segundos%60
+                tempo.innerHTML = ` 01 : 0${segs}`
+                if(segs >= 10){
+                    segs = segundos%60
+                    tempo.innerHTML = ` 01 : ${segs}`
+                }
+            }else if(segundos >= 120 && segundos < 180){
+                segs = segundos%60
+                tempo.innerHTML = ` 02 : 0${segs}`
+                if(segs >= 10){
+                    segs = segundos%60
+                    tempo.innerHTML = ` 02 : ${segs}`
+                }
+            }else if(segundos < 60){
+                segs = segundos%60
+                tempo.innerHTML = ` 00 : 0${segs}`
+                if(segs >= 10){
+                    segs = segundos%60
+                    tempo.innerHTML = ` 00 : ${segs}`
+                }
+            }
+            
+        }
+
+        function mudaimg(muda){
+            document.getElementById('imagem').src = muda
+        }
+
+        function mais(){
+            let sussa = localStorage.getItem('sussa')
+            let foco = localStorage.getItem('foco')
+            let dormir = localStorage.getItem('dormir')
+
+            let maismedita = document.getElementById('maismedita')
+
+            if(sussa > foco && sussa > dormir){
+                maismedita.innerHTML = `Ficar Sussa`
+            }
+            else if (foco > sussa && foco > dormir){
+                maismedita.innerHTML = `Focar na tarefa`
+            }
+            else if (dormir > sussa && dormir > foco){
+                maismedita.innerHTML = `Dormir de boas`
+            }else{
+                maismedita.innerHTML = 'Sem um objetivo mais utilizado'
+            }
+
+        
+            
+        }
+
+        function tempo(){
+            let tempo = document.getElementById('tempo')
+            let segundos = localStorage.getItem('segundos')
+
+            segs = segundos%60
+            
+            if(segundos >= 60 && segundos < 120){
+                segs = segundos%60
+                tempo.innerHTML = ` 01 : 0${segs}`
+                if(segs >= 10){
+                    segs = segundos%60
+                    tempo.innerHTML = ` 01 : ${segs}`
+                }
+            }else if(segundos >= 120 && segundos < 180){
+                segs = segundos%60
+                tempo.innerHTML = ` 02 : 0${segs}`
+                if(segs >= 10){
+                    segs = segundos%60
+                    tempo.innerHTML = ` 02 : ${segs}`
+                }
+            }else if(segundos < 60){
+                segs = segundos%60
+                tempo.innerHTML = ` 00 : 0${segs}`
+                if(segs >= 10){
+                    segs = segundos%60
+                    tempo.innerHTML = ` 00 : ${segs}`
+                }
+            }
+        }
+
+        function sussa(){
+            window.location.href = 'sussa.html'
+        }
+
+        function contador(){
+            
+            // mostra.innerHTML = `Meditações Realizadas: ${contadoratt}`
+        
+            let contador = Number(localStorage.getItem('contador'))
+            let contadoratt = contador + 1
+
+            contadoratt --
+
+            let mostra = document.getElementById('contador')
+            mostra.innerHTML = ` ${contadoratt}`
+        }
+    </script>
+</body>
+</html>

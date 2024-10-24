@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+</head>
+<body>
+    <div class="cont">
+        <nav class="nav">
+            <a href="../views/home.html" class="btn btn-info btn-sm shadow-lg">Voltar</a>
+            <h6>Ficar sussa</h6>
+            <div style="width: 13%;"></div>
+        </nav>
+        <div class="linha">
+            <img src="../img/focar.png" alt="sussa" width="90px">
+        </div>
+        <div class="linha">
+            <audio controls onplay="audio()">
+                <source src="../meditacao.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+        <div class="linha">
+            <button class="btn btn-danger btn-sm shadow" id="cancelar" onclick="cancelar()">Cancelar</button>
+        </div>
+        <footer></footer>
+    </div>
+    <script>
+        window.onload = ()=> {
+            
+            localStorage.setItem('timer',0)
+        }
+        function audio(){
+            let timer
+            let seconds = 0
+
+            let time = localStorage.getItem('timer')
+
+            if(time === '0'){
+                timer = setInterval(() => {
+                    seconds ++
+                    localStorage.setItem('segundos',seconds)
+                }, 1000);
+            }else{
+                clearInterval()
+            }
+
+
+            let tempo = Number(localStorage.getItem('timer'))
+            let tempoatt = tempo
+            if(tempoatt >= 10){
+                let contador = Number(localStorage.getItem('contador'))
+                let contadoratt = contador + 1
+                localStorage.setItem('contador',contadoratt)
+            }
+        }
+
+        function cancelar(){
+            window.location.href = 'home.html'
+        }
+
+        function sussa(){
+            window.location.href = 'sussa.html'
+        }
+    </script>
+</body>
+</html>

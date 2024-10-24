@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+</head>
+<body>
+    <div class="cont">
+        <nav class="nav">
+            <a href="../index.html" class="btn btn-info btn-sm shadow-lg" onclick="voltar()">Voltar</a>
+            <h6 id="obj">Objetivos</h6>
+            <a href="estatisticas.html" class="btn btn-info btn-sm shadow-lg">Estatísticas</a>
+        </nav>
+        <div class="linha">
+            <div class="objetivo shadow" onclick="sussa()" id="ficarsussa">
+                <img src="../img/sussa.png" alt="sussa" width="40px" id="imagem-sus" onmouseover="mostraid('../img/estas.png')" onmouseout="mostraid('../img/sussa.png')"> 
+                <div class="escrita">
+                    <h3>Ficar sussa</h3>
+                </div>
+            </div>
+        </div>
+        <div class="linha">
+            <div class="objetivo shadow" onclick="foco()" id="focartarefa">
+                <img src="../img/focar.png" alt="focar" width="40px" id="imagem-foco" onmouseover="mostrafoco('../img/olho.png')" onmouseout="mostrafoco('../img/focar.png')">
+                <div class="escrita">
+                    <h3>Focar na tarefa</h3>
+                </div>
+            </div>
+        </div>
+        <div class="linha">
+            <div class="objetivo shadow" onclick="dormir()" id="dormirboas">
+                <img src="../img/dormir.png" alt="sussa" width="40px" id="imagem-dormir" onmouseover="mostradormir('../img/triste.png')" onmouseout="mostradormir('../img/dormir.png')">
+                <div class="escrita">
+                    <h3>Dormir de Boas</h3>
+                </div>
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+    <script>
+        window.onload = ()=>{
+            localStorage.setItem('login',1) 
+        }
+
+        function mostraid(mostra){
+            document.getElementById('imagem').src = mostra
+        }
+        function mostrafoco(mostra){
+            document.getElementById('imagem-foco').src = mostra
+        }
+        function mostradormir(mostra){
+            document.getElementById('imagem-dormir').src = mostra
+        }
+
+        function voltar(){
+            localStorage.setItem('login',0)
+        }
+
+        function sussa(){
+            window.location.href = 'sussa.html'
+            let vezesmidtacao = Number(localStorage.getItem('sussa'))
+            let vezesmidtacaoatt = vezesmidtacao + 1
+            localStorage.setItem('sussa',vezesmidtacaoatt)
+
+            
+        }
+        function foco(){
+            window.location.href = 'foco.html'
+
+            let vezesmidtacao = Number(localStorage.getItem('foco'))
+            let vezesmidtacaoatt = vezesmidtacao + 1
+            localStorage.setItem('foco',vezesmidtacaoatt)
+
+            let contador = Number(localStorage.getItem('contador'))
+            let contadoratt = contador + 1
+            localStorage.setItem('contador',contadoratt)
+        }
+        function dormir(){
+            window.location.href = 'dormir.html'
+
+            let vezesmidtacao = Number(localStorage.getItem('dormir'))
+            let vezesmidtacaoatt = vezesmidtacao + 1
+            localStorage.setItem('dormir',vezesmidtacaoatt)
+
+            let contador = Number(localStorage.getItem('contador'))
+            let contadoratt = contador + 1
+            localStorage.setItem('contador',contadoratt)
+        }
+    </script>
+</body>
+</html>

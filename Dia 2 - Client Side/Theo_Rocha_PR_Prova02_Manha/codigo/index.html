@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="cont">
+        <div class="slide-in">
+            <div class="linha">
+                <img src="img/corte.png" alt="" width="80px">
+            </div>
+            <div class="linha">
+                <h6>Seja bem-vindo ao "De Boas", onde você aprende meditação e fica sempre de boas.</h6>
+            </div>
+            <div class="linha">
+                <button class="btn shadow-lg" onclick="muda()">Próximo</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.onload = ()=>{
+            const slide = document.querySelector('.slide-in')
+            slide.classList.add('active')
+
+            const login = localStorage.getItem('login')
+
+            if(login === '1'){
+                window.location.href = 'views/home.html'
+            }else{
+                console.log('1o')
+            }
+        }
+        function muda(){
+            window.location.href = 'views/proximo2.html'
+        }
+    </script>
+</body>
+</html>
